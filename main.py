@@ -46,10 +46,11 @@ class Morse():
 
     def toMorse(self, message):
         res = str()
-        for i in message:
+        for i in str(message):
             if i == ' ' or i == '  ':
                 res += i
-            res += self.morse_code.get(i.uppper())
+            x = str(i.upper())
+            res += self.morse_code.get(x)
 
         return res
 
