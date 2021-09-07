@@ -1,10 +1,8 @@
 class Morse():
     def __init__(self):
         self.morse_code = dict()
-
-    def _morse_code_init():
-        # dot==0   dash==1
         self.morse_code = {
+        # dot==0  dash==1
         'A':'01',
         'B':'1000',
         'C':'0101',
@@ -44,18 +42,23 @@ class Morse():
         '0':'11111',
         }
 
+
     def toMorse(self, message):
-        res = str()
+        res_lst = list()
         for i in str(message):
             if i == ' ' or i == '  ':
-                res += i
-            x = str(i.upper())
-            res += self.morse_code.get(x)
+                res_lst.append(i)
+            elif str(i.upper()) in self.morse_code.keys():
+                res_lst.append(self.morse_code.get(str(i.upper())))
+            else:
+                res_lst.append('~')
+        
+        return res_lst
 
-        return res
 
     def toText(self, code):
         pass
+
 
     def _logic(self):
         print('Welcome to MorseDecoder\nchose command')
@@ -67,18 +70,24 @@ class Morse():
             print('Enter text to code:')
             message = str(input())
             result = self.toMorse(message)
-
         elif user_choise == '2':
             pass
         else:
             print('Ooops, no such command as' + str(user_choise))
         return result
 
+
     def main(self):
-        self._logic()
+        result = ''
+        result_list = self._logic()
+        for i in result_list:
+            result += i
+        return result
+
 
 if __name__ == '__main__':
     x = Morse()
 
-    x.main()
+    res = x.main()
+    print(res)
     # x.toText()
